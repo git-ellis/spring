@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--
+            XML配置為spring最早接受配置的方式，而現在，XML配置不再是唯一的方式，
+            現在有了強大的自動裝配與java config，你應該在最後才考慮XML配置
+            缺點: 需要定義class完整目錄，必須藉助IDE的XML配置檢查，避免出錯(class重新命名)
+     -->
+
+    <!-- root configuration -->
+    <import resource="bean/configuration/application-userservice.xml"/>
+</beans>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <import resource="application-user.xml"/>
+    <!-- namespace c and p can't inject collection into bean construct or property -->
+
+    <!-- constructor injection (對強依賴使用建構子注入)-->
+    <bean id="userService1" class="com.example.service.bean.UserService">
+        <constructor-arg ref="user1"/>
+    </bean>
+
+    <!-- c:[_]|argName-ref="xxx" -->
+    <!-- xml不允許屬性第一個字為數字，所以使用_當prefix(無意義) -->
+    <bean id="userService3" class="com.example.service.bean.UserService" c:user-ref="user3"/>
+    <bean id="userService4" class="com.example.service.bean.UserService" c:_0-ref="user4"/> <!-- 只有一個參數，參數名可省略 -->
+
+
+    <!-- property injection(對可選性的弱依賴採用屬性注入) -->
+    <bean id="userService" class="com.example.service.bean.UserService">
+        <property name="user">
+            <null/>
+        </property>
+        <property name="users">
+            <util:list id="userList">
+                <ref bean="user1"/>
+                <ref bean="user2"/>
+                <ref bean="user3"/>
+                <ref bean="user4"/>
+                <ref bean="user5"/>
+                <ref bean="user6"/>
+                <ref bean="user7"/>
+            </util:list>
+        </property>
+        <property name="userSet">
+            <set>
+                <ref bean="user1"/>
+                <ref bean="user2"/>
+                <ref bean="user3"/>
+                <ref bean="user4"/>
+                <ref bean="user5"/>
+                <ref bean="user6"/>
+                <ref bean="user7"/>
+            </set>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="user1" value-ref="user1"/>
+                <entry key="user2" value-ref="user2"/>
+                <entry key="user3" value-ref="user3"/>
+                <entry key="user4" value-ref="user4"/>
+                <entry key="user5" value-ref="user5"/>
+                <entry key="user6" value-ref="user6"/>
+                <entry key="user7" value-ref="user7"/>
+            </map>
+        </property>
+    </bean>
+</beans>

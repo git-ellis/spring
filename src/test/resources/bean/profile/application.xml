@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+<!--    <context:component-scan base-package="com.example" />-->
+
+    <beans profile="dev">
+        <bean id="product_dev" class="com.example.domain.Product"
+              c:_0="2" c:_1="開發產品" c:_2="199" c:_3="1000"  />
+    </beans>
+    <beans profile="prod">
+        <bean id="product_prod" class="com.example.domain.Product"
+              c:_0="1" c:_1="正式產品" c:_2="9999" c:_3="10000" />
+    </beans>
+</beans>

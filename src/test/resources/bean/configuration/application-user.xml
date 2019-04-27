@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- constructor injection (對強依賴使用建構子注入)-->
+    <bean id="user1" class="com.example.domain.User">
+        <constructor-arg type="long" value="1"/>
+        <constructor-arg type="int" value="30"/>
+        <constructor-arg value="Andy"/>
+        <constructor-arg value="pwd"/>
+        <constructor-arg value="andy@gmail.com"/>
+        <constructor-arg value="male"/>
+    </bean>
+
+    <bean id="user2" class="com.example.domain.User">
+        <constructor-arg index="0" value="2"/>
+        <constructor-arg index="1" value="40"/>
+        <constructor-arg index="2" value="Emily"/>
+        <constructor-arg index="3" value="pwd"/>
+        <constructor-arg index="4" value="lydia@gmail.com"/>
+        <constructor-arg index="5" value="female"/>
+    </bean>
+
+    <bean id="user3" class="com.example.domain.User">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="age" value="40"/>
+        <constructor-arg name="name" value="Emily"/>
+        <constructor-arg name="password" value="pwd"/>
+        <constructor-arg name="email" value="lydia@gmail.com"/>
+        <constructor-arg name="gender" value="female"/>
+    </bean>
+
+    <!-- c:[_]|argName-ref="xxx" -->
+    <!-- xml不允許屬性第一個字為數字，所以使用_當prefix(無意義) -->
+    <bean id="user4" class="com.example.domain.User" c:_0="3" c:_1="20" c:_2="Lydia" c:_3="pwd" c:_4="lydia@gmail.com"
+          c:_5="female"/>
+    <bean id="user5" class="com.example.domain.User" c:id="3" c:age="35" c:name="Ken" c:password="pwd"
+          c:email="ken@gmail.com" c:gender="male"/>
+
+    <!-- property injection(對可選性的弱依賴採用屬性注入) -->
+    <bean id="user6" class="com.example.domain.User">
+        <property name="id" value="3"/>
+        <property name="name" value="Lion"/>
+        <property name="age" value="50"/>
+        <property name="password" value="pwd"/>
+        <property name="email" value="lion@gmail.com"/>
+        <property name="gender" value="male"/>
+    </bean>
+
+    <!-- p:propName-ref="xxx" -->
+    <bean id="user7" class="com.example.domain.User"
+          p:id="4" p:name="Howard" p:age="36" p:email="howard@gmail.com" p:password="pwd" p:gender="male"/>
+
+</beans>
